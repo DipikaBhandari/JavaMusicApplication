@@ -7,4 +7,6 @@ module com.example.demojava {
     exports com.example.musicapplication;
     exports com.example.musicapplication.Controllers;
     opens com.example.musicapplication.Controllers to javafx.fxml;
+    exports com.example.musicapplication.hellofile;
+    opens com.example.musicapplication.hellofile to javafx.fxml;
 }

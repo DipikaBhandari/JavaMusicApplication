@@ -1,4 +1,4 @@
-package com.example.musicapplication;
+package com.example.musicapplication.hellofile;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
