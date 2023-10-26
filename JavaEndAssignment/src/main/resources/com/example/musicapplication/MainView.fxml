@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="MainView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.musicapplication.Controllers.MainViewController">
+    <prefHeight>600.0</prefHeight>
+    <VBox fx:id="vbox" prefHeight="600.0" prefWidth="220.0" style="-fx-background-color: #ff0000;">
+    <children>
+        <Pane prefHeight="110.0" prefWidth="220.0">
+            <children>
+                <Label layoutX="28.0" layoutY="28.0" prefHeight="80.0" prefWidth="150.0" text="Wim's Music Shop" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                  <font>
+                      <Font name="Arial Bold" size="20.0" />
+                  </font>
+                </Label>
+            </children>
+        </Pane>
+        <Button fx:id="dashboardBtn" alignment="CENTER" blendMode="LIGHTEN" contentDisplay="CENTER" mnemonicParsing="false" mouseTransparent="true" onAction="#DashboardBtnClicked" prefHeight="55.0" prefWidth="220.0" style="-fx-background-color: dd5e33;" text="Dashboard" textAlignment="JUSTIFY" textFill="WHITE">
+            <font>
+                <Font name="Calibri" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="createOrderBtn" blendMode="LIGHTEN" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" mouseTransparent="true" onAction="#CreateOrderBtnClicked" prefHeight="55.0" prefWidth="220.0" style="-fx-background-color: dd5e33;" text="Create Order" textFill="WHITE">
+            <font>
+                <Font name="Calibri" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="productInventoryBtn" blendMode="LIGHTEN" layoutX="10.0" layoutY="67.0" mnemonicParsing="false" mouseTransparent="true" onAction="#ProductInventoryBtnClicked" prefHeight="55.0" prefWidth="220.0" style="-fx-background-color: dd5e33;" text="Product Inventory" textFill="WHITE">
+            <font>
+                <Font name="Calibri" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="orderHistoryBtn" blendMode="LIGHTEN" layoutX="10.0" layoutY="125.0" mnemonicParsing="false" mouseTransparent="true" onAction="#OrderHistoryBtnClicked" prefHeight="55.0" prefWidth="220.0" style="-fx-background-color: dd5e33;" text="Order History" textFill="WHITE">
+            <font>
+                <Font name="Calibri" size="18.0" />
+            </font>
+        </Button>
+    </children>
+</VBox>
+<Label fx:id="welcomelbl" layoutX="265.0" layoutY="47.0" prefHeight="55.0" prefWidth="220.0" wrapText="true">
+<font>
+    <Font name="Calibri Bold Italic" size="30.0" />
+</font>
+</Label>
+<Label fx:id="rolelbl" layoutX="265.0" layoutY="117.0" prefHeight="20.0" prefWidth="220.0">
+<font>
+    <Font name="Calibri" size="18.0" />
+</font>
+</Label>
+    <VBox layoutX="195.0" layoutY="8.0" prefHeight="646.0" prefWidth="892.0" />
+</AnchorPane>
