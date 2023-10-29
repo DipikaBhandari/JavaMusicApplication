@@ -4,14 +4,31 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.musicapplication.Controllers.CreatingOrderViewController">
     <TableView fx:id="OrdersTable" layoutX="-139.0" layoutY="824.0" maxHeight="500.0" maxWidth="752.0" minWidth="750.0" prefHeight="314.0" prefWidth="752.0" translateX="170.0" translateY="-600.0">
         <columns>
-            <TableColumn prefWidth="61.333443505959075" text="Quantity" />
-            <TableColumn prefWidth="253.33332061767578" text="Name" />
-            <TableColumn minWidth="8.3333740234375" prefWidth="117.0" text="Category" />
-            <TableColumn minWidth="8.3333740234375" prefWidth="89.66671752929688" text="Price" />
-            <TableColumn prefWidth="230.33331298828125" text="Description" />
+            <TableColumn prefWidth="61.333443505959075" text="Quantity" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="quantity"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="253.33332061767578" text="Name" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="productName"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn minWidth="8.3333740234375" prefWidth="117.0" text="Category" >
+            <cellValueFactory>
+                <PropertyValueFactory property="productCategory"/>
+            </cellValueFactory>
+            </TableColumn>
+            <TableColumn minWidth="8.3333740234375" prefWidth="89.66671752929688" text="Price" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="finalPrice"/>
+                </cellValueFactory>
+            </TableColumn>
+
         </columns>
     </TableView>
     <Label layoutX="33.0" layoutY="192.0" prefHeight="33.0" prefWidth="111.0" text="Products">

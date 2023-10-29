@@ -55,14 +55,14 @@ public class CreatingOrderViewController {
             Parent root = fxmlLoader.load();
             AddingProductPopupController popupViewControllerController = fxmlLoader.getController();
             popupViewControllerController.useDatabase(database);
-           // dialogController.setOrderController(this);
+            popupViewControllerController.setCreatingOrderViewController(this);
 
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setTitle("Add product To order");
             dialog.getDialogPane().setContent(root);
             dialog.showAndWait();
         } catch (IOException ex) {
-           // messageLabel.setText("Error Loading Add Product Dialog");
+            ex.printStackTrace();
         }
     }
 
@@ -74,7 +74,7 @@ public class CreatingOrderViewController {
 
             }
         } catch (Exception e){
-          //  messageLabel.setText("Error Occurred While Deleting the Product");
+         e.printStackTrace();
         }
     }
 
@@ -93,6 +93,7 @@ public class CreatingOrderViewController {
             reduceStockProducts();
 
             Order order = new Order(currentDateTime, customer, new ArrayList<>(selectedItems));
+            database.addOrderToFile(order);
             clearTextbox();
             OrdersTable.setItems(FXCollections.observableArrayList());
         } catch (Exception e) {
@@ -114,10 +115,6 @@ public class CreatingOrderViewController {
             Product selectedProduct = findItemByName(product.getProductName());
             if (selectedProduct != null) {
                 selectedProduct.stockManagement(product.getQuantity());
-            }
-            else{
-               // messageLabel.setText(product.getProductName()+ "not found");
-
             }
         }
     }

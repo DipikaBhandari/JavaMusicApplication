@@ -14,10 +14,11 @@ public class Database {
     private List<Order> orders = new ArrayList<>();
     private DataSerialization dataSerialization;
 
-    public Database() throws FileNotFoundException {
+    public Database() {
 
         users.add(new User("Wim", "Wim!1111", Role.Sales));
         users.add(new User("Wim", "Wim@2222", Role.Manager));
+
         loadDataFromFile();
     }
 
@@ -68,12 +69,20 @@ public class Database {
 
 
     public void addProductToFile(Product product) {
+       // products.add(new Product(5, "guitar", "g", 9.00, "yryjgyjgj"));
         products.add(product);
         saveDataToFile();
     }
 
     public void removeProductFromFile(Product product) {
         products.remove(product);
+        saveDataToFile();
+    }
+    public List<Order> getOrders() {
+        return orders;
+    }
+    public void addOrderToFile(Order order) {
+        orders.add(order);
         saveDataToFile();
     }
 }

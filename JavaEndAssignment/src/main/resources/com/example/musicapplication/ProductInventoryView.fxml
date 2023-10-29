@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -9,11 +14,36 @@
     <children>
       <TableView fx:id="ProductInventoryTableView" layoutX="19.0" layoutY="71.0" prefHeight="460.0" prefWidth="846.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Stock" />
-          <TableColumn prefWidth="170.33333587646484" text="Name" />
-            <TableColumn minWidth="0.0" prefWidth="129.33334350585938" text="Category" />
-            <TableColumn prefWidth="113.0" text="Price" />
-            <TableColumn prefWidth="356.9999694824219" text="Description" />
+
+            <TableColumn prefWidth="75.0" text="Stock">
+                <cellValueFactory>
+                    <PropertyValueFactory property="stock"/>
+                </cellValueFactory>
+            </TableColumn>
+
+          <TableColumn prefWidth="170.33333587646484" text="Name" >
+              <cellValueFactory>
+                  <PropertyValueFactory property="productName"/>
+              </cellValueFactory>
+          </TableColumn>
+
+            <TableColumn minWidth="0.0" prefWidth="129.33334350585938" text="Category" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="productCategory"/>
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn prefWidth="113.0" text="Price" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="price"/>
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn prefWidth="356.9999694824219" text="Description" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="productDescription"/>
+                </cellValueFactory>
+            </TableColumn>
         </columns>
       </TableView>
        <Button fx:id="AddProductbtn" layoutX="198.0" layoutY="637.0" mnemonicParsing="false" onAction="#AddProductButton" prefHeight="26.0" prefWidth="111.0" text="Add Product">

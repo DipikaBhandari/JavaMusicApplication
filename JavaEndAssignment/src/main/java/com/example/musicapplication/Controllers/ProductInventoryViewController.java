@@ -11,9 +11,7 @@ public class ProductInventoryViewController {
     public Button AddProductbtn;
     public Button DeleteProductbtn;
     public Button EditProductbtn;
-    public Label MessageLbl;
-    public TableView <Product>ProductInventoryTableView;
-
+    public TableView <Product> ProductInventoryTableView;
     public TextField stocktxt;
     public TextField productnametxt;
     public TextField productcategorytxt;
@@ -25,13 +23,17 @@ public class ProductInventoryViewController {
 
     private Database database;
 
-    public void useDatabase(Database database) {this.database=database;}
+    public void useDatabase(Database database) {
+        this.database = database;
+    }
 
     public void initialize() {
         try {
             ProductInventoryTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         } catch (Exception e) {
-             MessageLabel.setText("Initialization Failed");
+            // MessageLabel.setText("Initialization Failed");
+            e.printStackTrace();
         }
     }
 
@@ -71,9 +73,10 @@ public class ProductInventoryViewController {
                 database.removeProductFromFile(product);
             }
             products.removeAll(selectedProducts);
-            MessageLabel.setText(product.getProductName() + " added successfully.");
+            MessageLabel.setText(" Product removed successfully.");
         } catch (Exception e) {
             MessageLabel.setText("Error occurred");
+            e.printStackTrace();
         }
     }
 
@@ -130,43 +133,22 @@ public class ProductInventoryViewController {
     }
 
     public void updateProductDetails() {
+        String stock = stocktxt.getText();
+        String name = productnametxt.getText();
+        String category = productcategorytxt.getText();
+        String  price = pricetxt.getText();
+        String description = descriptiontxt.getText();
         try {
-            int updatedStock;
-            if (stocktxt.getText().isEmpty()) {
-                updatedStock = product.getStock();
-            } else {
-                updatedStock = Integer.parseInt(stocktxt.getText());
-            }
 
-            double updatedPrice;
-            if (pricetxt.getText().isEmpty()) {
-                updatedPrice = product.getPrice();
-            } else {
-                updatedPrice = Double.parseDouble(pricetxt.getText());
-            }
-
-            String updatedName;
-            if (productnametxt.getText().isEmpty()) {
-                updatedName = product.getProductName();
-            } else {
-                updatedName = productnametxt.getText();
-
-                String updatedCategory;
-                if (productcategorytxt.getText().isEmpty()) {
-                    updatedCategory = product.getProductCategory();
-                } else {
-                    updatedCategory = productcategorytxt.getText();
-                }
-
-                String updatedDescription;
-                if (descriptiontxt.getText().isEmpty()) updatedDescription = product.getProductDescription();
-                else {
-                    updatedDescription = descriptiontxt.getText();
-                }
+            int updatedStock = stock.isEmpty()? product.getStock(): Integer.parseInt(stock);
+            String updatedName = name.isEmpty()? product.getProductName(): name;
+            String updatedCategory = category.isEmpty()? product.getProductCategory(): category;
+            double updatedPrice = price.isEmpty()? product.getPrice(): Double.parseDouble(price);
+            String updatedDescription = description.isEmpty()? product.getProductDescription(): description;
 
                 Product updatedProduct = new Product(updatedStock, updatedName, updatedCategory, updatedPrice, updatedDescription);
-                // database.deleteProductsFromDatabase(product);
-                // database.addProductsToDatabase(updatedProduct);
+                database.removeProductFromFile(product);
+                database.addProductToFile(updatedProduct);
 
                 int selectionIndex = products.indexOf(product);
                 products.set(selectionIndex, updatedProduct);
@@ -174,11 +156,11 @@ public class ProductInventoryViewController {
                  emptyTextFields();
                 product = null;
                 MessageLabel.setText("Product Successfully Edited");
-            }
-
-        } catch (NumberFormatException e) {
-            throw new RuntimeException(e);
+            } catch (NumberFormatException ex) {
+            throw new RuntimeException(ex);
         }
 
     }
+
+
 }

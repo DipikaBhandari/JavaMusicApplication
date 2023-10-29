@@ -80,7 +80,7 @@ public class MainViewController {
             Parent root = fxmlLoader.load();
             ProductInventoryViewController productInventoryController = fxmlLoader.getController();
             productInventoryController.useDatabase(database);
-          //  productInventoryController.displayProducts();
+           productInventoryController.viewProductsList();
             vbox.getChildren().setAll(root);
         } catch (IOException ex) {
             ex.printStackTrace();
