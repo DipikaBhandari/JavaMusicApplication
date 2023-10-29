@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.musicapplication.Controllers.ProductInventoryViewController"
-            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.musicapplication.Controllers.ProductInventoryViewController">
 
+    <children>
+      <TableView fx:id="ProductInventoryTableView" layoutX="19.0" layoutY="71.0" prefHeight="460.0" prefWidth="846.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Stock" />
+          <TableColumn prefWidth="170.33333587646484" text="Name" />
+            <TableColumn minWidth="0.0" prefWidth="129.33334350585938" text="Category" />
+            <TableColumn prefWidth="113.0" text="Price" />
+            <TableColumn prefWidth="356.9999694824219" text="Description" />
+        </columns>
+      </TableView>
+       <Button fx:id="AddProductbtn" layoutX="198.0" layoutY="637.0" mnemonicParsing="false" onAction="#AddProductButton" prefHeight="26.0" prefWidth="111.0" text="Add Product">
+           <font>
+               <Font name="Calibri" size="13.0" />
+           </font>
+       </Button>
+       <Button fx:id="DeleteProductbtn" layoutX="348.0" layoutY="637.0" mnemonicParsing="false" onAction="#DeleteButton" prefHeight="25.0" prefWidth="111.0" text="Delete Product">
+           <font>
+               <Font name="Calibri" size="13.0" />
+           </font>
+       </Button>
+       <Button fx:id="EditProductbtn" layoutX="494.0" layoutY="637.0" mnemonicParsing="false" onAction="#EditButton" prefHeight="25.0" prefWidth="111.0" text="Edit Product">
+           <font>
+               <Font name="Calibri" size="13.0" />
+           </font>
+       </Button>
+       <Label layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="219.0" text="Product Inventory">
+           <font>
+               <Font name="Calibri Bold" size="26.0" />
+           </font>
+       </Label>
+       <TextField fx:id="stocktxt" layoutX="14.0" layoutY="555.0" promptText="Stock" />
+       <TextField fx:id="productnametxt" layoutX="183.0" layoutY="555.0" promptText="Name" />
+       <TextField fx:id="productcategorytxt" layoutX="351.0" layoutY="555.0" promptText="Category" />
+       <TextField fx:id="pricetxt" layoutX="523.0" layoutY="555.0" promptText="Price" />
+       <TextField fx:id="descriptiontxt" layoutX="697.0" layoutY="555.0" promptText="Description" />
+       <Label fx:id="MessageLabel" layoutX="17.0" layoutY="612.0" prefHeight="17.0" prefWidth="292.0" />
+   </children>
 </AnchorPane>

@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.musicapplication.Controllers.DashboardViewController"
-            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0">
-    <children>
-        <Label fx:id="welcomelbl" layoutX="115.0" layoutY="40.0" prefHeight="55.0" prefWidth="220.0" wrapText="true">
-            <font>
-                <Font name="Calibri Bold " size="30.0" />
-            </font>
-        </Label>
-        <Label fx:id="rolelbl" layoutX="118.0" layoutY="104.0" prefHeight="18.0" prefWidth="220.0">
-            <font>
-                <Font name="Calibri" size="25.0" />
-            </font>
-        </Label>
-        <Label fx:id="dateTimelbl" layoutX="118.0" layoutY="146.0" prefHeight="17.0" prefWidth="224.0">
-            <font>
-                <Font name="Calibri" size="25.0" />
-            </font>
-        </Label>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.musicapplication.Controllers.DashboardController">
+    <VBox />
+     <Label fx:id="welcome" layoutX="42.0" layoutY="14.0" prefHeight="55.0" prefWidth="220.0" text="welcome" textAlignment="JUSTIFY" wrapText="true">
+      <font>
+         <Font name="Calibri Bold Italic" size="22.0" />
+      </font></Label>
+     <Label fx:id="datetime" layoutX="40.0" layoutY="96.0" prefHeight="17.0" prefWidth="224.0" text="date">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+     <Label fx:id="userRole" layoutX="42.0" layoutY="69.0" prefHeight="20.0" prefWidth="220.0" text="role">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
 </AnchorPane>

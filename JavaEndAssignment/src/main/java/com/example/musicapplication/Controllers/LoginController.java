@@ -39,11 +39,10 @@ public class LoginController {
         String username = usernametxt.getText();
         String password = passwordtxt.getText();
         try {
-            if (PasswordValidity(password)) {
+            if(PasswordValidity(password)) {
                 user = database.LoginAuthorization(username, password);
                 loadMainView(username, role);
             }
-
         } catch (ResultNotFoundException ex) {
             lblErrorMessage.setText(ex.getMessage());
         }
@@ -71,7 +70,7 @@ public class LoginController {
             FXMLLoader mainViewLoader = new FXMLLoader(MusicApplication.class.getResource("MainView.fxml"));
             Parent root = mainViewLoader.load();
             MainViewController controller = mainViewLoader.getController();
-            controller.userInstanse(user);
+            controller.userInstance(user);
             controller.useDatabase(database);
             controller.start(username, role);
             Scene scene = new Scene(root, 1100, 643);

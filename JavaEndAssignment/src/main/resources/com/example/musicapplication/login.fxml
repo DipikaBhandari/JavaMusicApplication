@@ -68,7 +68,7 @@
                     <Insets left="8.0" top="38.0" />
                 </GridPane.margin>
             </Label>
-            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#LoginButtonClick" prefHeight="41.0" prefWidth="101.0" style="-fx-background-color: FF0000;" text="Login" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#LoginButtonClick" prefHeight="41.0" prefWidth="101.0" style="-fx-background-color: #0b5631;" text="Login" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <font>
                     <Font name="Calibri" size="22.0" />
                 </font>

@@ -18,42 +18,28 @@ public class MainViewController {
     public Button createOrderBtn;
     public Button productInventoryBtn;
     public Button orderHistoryBtn;
+    public VBox vbox;
     public Label welcomelbl;
     public Label rolelbl;
-    public VBox vbox;
     private Database database;
     private User user;
-    public void DashboardBtnClicked(ActionEvent actionEvent) {
-    }
-
-    public void CreateOrderBtnClicked(ActionEvent actionEvent) {
-    }
-
-    public void ProductInventoryBtnClicked(ActionEvent actionEvent) {
-    }
-
-    public void OrderHistoryBtnClicked(ActionEvent actionEvent) {
-    }
-
     public void useDatabase(Database database) {
+        this.database=database;
     }
 
-    public void start(String username, Role role) {
-    }
-
-    public void userInstanse(User user) {
+    public void userInstance(User user) {
         this.user=user;
         try {
             basedOnUserRole();
+            MainView();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     public void basedOnUserRole(){
         try{
             Role role = user.getRole();
-            if(role==Role.Manager){
+            if (role==Role.Manager){
                 dashboardBtn.setDisable(false);
                 createOrderBtn.setDisable(true);
                 productInventoryBtn.setDisable(false);
@@ -69,7 +55,14 @@ public class MainViewController {
             e.printStackTrace();
         }
     }
-    public void switchToOrderView() throws IOException {
+    public void MainView() throws IOException {switchToDashboardView();}
+    public void DashboardBtnClicked(ActionEvent actionEvent) throws IOException {switchToDashboardView();}
+    public void CreateOrderBtnClicked(ActionEvent actionEvent) throws IOException {DisplayOrderView();}
+
+    public void ProductInventoryBtnClicked(ActionEvent actionEvent) throws IOException {DisplayProductInventory();}
+
+    public void OrderHistoryBtnClicked(ActionEvent actionEvent) throws IOException {DisplayOrderHistory();}
+    public void DisplayOrderView() throws IOException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MusicApplication.class.getResource("CreatingOrderView.fxml"));
             Parent root = fxmlLoader.load();
@@ -81,6 +74,46 @@ public class MainViewController {
         }
     }
 
+    public void DisplayProductInventory() throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MusicApplication.class.getResource("ProductInventoryView.fxml"));
+            Parent root = fxmlLoader.load();
+            ProductInventoryViewController productInventoryController = fxmlLoader.getController();
+            productInventoryController.useDatabase(database);
+          //  productInventoryController.displayProducts();
+            vbox.getChildren().setAll(root);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
+    public void DisplayOrderHistory() throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MusicApplication.class.getResource("OrderHistoryView.fxml"));
+            Parent root = fxmlLoader.load();
+            OrderHistoryViewController historyController = fxmlLoader.getController();
+            historyController.useDatabase(database);
+            vbox.getChildren().setAll(root);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
+    public void switchToDashboardView() throws IOException {
+        try {
+            FXMLLoader dashboardLoader = new FXMLLoader(MusicApplication.class.getResource("DashboardView.fxml"));
+            Parent root = dashboardLoader.load();
+            DashboardController dashboardController = dashboardLoader.getController();
+            dashboardController.userInstance(user);
+            dashboardController.useDatabase(database);
+            vbox.getChildren().setAll(root);
+            dashboardController.start();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void start(String username, Role role) {
+    }
 }
