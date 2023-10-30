@@ -15,6 +15,8 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 public class MainViewController {
+    public Label welcome;
+    public Label userRole;
     @FXML
     private Button dashboardBtn;
     @FXML
@@ -35,7 +37,7 @@ public class MainViewController {
         this.user=user;
         try {
             basedOnUserRole();
-            MainView();
+           MainView();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,8 +61,12 @@ public class MainViewController {
             e.printStackTrace();
         }
     }
-    public void MainView() throws IOException {switchToDashboardView();}
-    public void DashboardBtnClicked(ActionEvent actionEvent) throws IOException {switchToDashboardView();}
+    public void MainView(){
+        welcome.setText("Welcome " + user.getUserName()+ "!");;
+        userRole.setText("Your role is "+ user.getRole()+ ".");
+    }
+
+    public void DashboardBtnClicked(ActionEvent actionEvent) throws IOException {DisplayDashboardView();}
     public void CreateOrderBtnClicked(ActionEvent actionEvent) throws IOException {DisplayOrderView();}
 
     public void ProductInventoryBtnClicked(ActionEvent actionEvent) throws IOException {DisplayProductInventory();}
@@ -103,7 +109,7 @@ public class MainViewController {
         }
     }
 
-    public void switchToDashboardView() throws IOException {
+    public void DisplayDashboardView() throws IOException {
         try {
             FXMLLoader dashboardLoader = new FXMLLoader(MusicApplication.class.getResource("DashboardView.fxml"));
             Parent root = dashboardLoader.load();
@@ -111,6 +117,7 @@ public class MainViewController {
             dashboardController.userInstance(user);
             dashboardController.useDatabase(database);
             vbox.getChildren().setAll(root);
+            hideMainView();
             dashboardController.start();
 
         } catch (IOException ex) {
@@ -119,5 +126,9 @@ public class MainViewController {
     }
 
     public void start(String username, Role role) {
+    }
+    public void hideMainView(){
+        welcome.setText("");
+        userRole.setText("");
     }
 }

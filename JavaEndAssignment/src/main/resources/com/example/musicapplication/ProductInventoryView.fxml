@@ -71,7 +71,7 @@
        <TextField fx:id="productcategorytxt" layoutX="351.0" layoutY="555.0" promptText="Category" />
        <TextField fx:id="pricetxt" layoutX="523.0" layoutY="555.0" promptText="Price" />
        <TextField fx:id="descriptiontxt" layoutX="697.0" layoutY="555.0" promptText="Description" />
-       <Label fx:id="MessageLabel" layoutX="17.0" layoutY="600.0" prefHeight="17.0" prefWidth="292.0" >
+       <Label fx:id="messageLabel" layoutX="17.0" layoutY="600.0" prefHeight="17.0" prefWidth="292.0" >
         <font>
             <Font name="System Bold" size="14.0" />
         </font>

@@ -10,6 +10,8 @@ import javafx.scene.control.*;
 
 public class ProductInventoryViewController {
     @FXML
+    private Label messageLabel;
+    @FXML
     private TableView <Product> ProductInventoryTableView;
     @FXML
     private TextField stocktxt;
@@ -21,8 +23,7 @@ public class ProductInventoryViewController {
     private TextField pricetxt;
     @FXML
     private TextField descriptiontxt;
-    @FXML
-    private Label MessageLabel;
+
     private Product product;
     private ObservableList<Product> products;
 
@@ -36,7 +37,7 @@ public class ProductInventoryViewController {
         try {
             ProductInventoryTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         } catch (Exception e) {
-            MessageLabel.setText("Initialization Failed");
+            messageLabel.setText("Initialization Failed");
             e.printStackTrace();
         }
     }
@@ -46,7 +47,7 @@ public class ProductInventoryViewController {
             products = FXCollections.observableArrayList(database.getProducts());
             ProductInventoryTableView.setItems(products);
         } catch (Exception ex) {
-            MessageLabel.setText("Error: Loading Products");
+            messageLabel.setText("Error: Loading Products");
             ex.printStackTrace();
         }
     }
@@ -63,9 +64,9 @@ public class ProductInventoryViewController {
             database.addProductToFile(product);
             products.add(product);
             emptyTextFields();
-            MessageLabel.setText(product.getProductName() + " Added Successfully.");
+            messageLabel.setText(product.getProductName() + " Added Successfully.");
         } catch (Exception e) {
-            MessageLabel.setText("Error: Adding Product");
+            messageLabel.setText("Error: Adding Product");
             e.printStackTrace();
         }
     }
@@ -78,9 +79,9 @@ public class ProductInventoryViewController {
                 PromptText();
             }
             products.removeAll(selectedProducts);
-            MessageLabel.setText("Product Removed Successfully.");
+            messageLabel.setText("Product Removed Successfully.");
         } catch (Exception e) {
-            MessageLabel.setText("Error: Removing Product");
+            messageLabel.setText("Error: Removing Product");
             e.printStackTrace();
         }
     }
@@ -94,7 +95,7 @@ public class ProductInventoryViewController {
                   PromptText();
             }
         } catch (Exception ex) {
-            MessageLabel.setText("Error: No Product Selected");
+            messageLabel.setText("Error: No Product Selected");
         }
     }
 
@@ -110,7 +111,7 @@ public class ProductInventoryViewController {
                 product = selectedProduct;
             }
         } catch (Exception e) {
-            MessageLabel.setText("Error: Setting Product Details.");
+            messageLabel.setText("Error: Setting Product Details.");
         }
     }
     public void emptyTextFields() {
@@ -121,7 +122,7 @@ public class ProductInventoryViewController {
             pricetxt.clear();
             descriptiontxt.clear();
         } catch (Exception e) {
-            MessageLabel.setText("Error: Clearing Fields");
+            messageLabel.setText("Error: Clearing Fields");
         }
     }
 
@@ -133,7 +134,7 @@ public class ProductInventoryViewController {
             pricetxt.setPromptText("Price");
             descriptiontxt.setPromptText("Description");
         } catch (Exception e) {
-            MessageLabel.setText("Error resetting prompt text.");
+            messageLabel.setText("Error resetting prompt text.");
         }
     }
 
@@ -160,7 +161,7 @@ public class ProductInventoryViewController {
 
                  emptyTextFields();
                 product = null;
-                MessageLabel.setText("Product Edited Successfully");
+            messageLabel.setText("Product Edited Successfully");
             } catch (NumberFormatException ex) {
             throw new RuntimeException(ex);
         }
