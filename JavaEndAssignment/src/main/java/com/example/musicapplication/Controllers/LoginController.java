@@ -6,6 +6,7 @@ import com.example.musicapplication.Models.ResultNotFoundException;
 import com.example.musicapplication.Models.Role;
 import com.example.musicapplication.Models.User;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,10 +20,14 @@ import java.io.IOException;
 
 public class LoginController {
 
-    public TextField usernametxt;
-    public Label lblErrorMessage;
-    public Button btnLogin;
-    public PasswordField passwordtxt;
+    @FXML
+    private TextField usernametxt;
+    @FXML
+    private Label lblErrorMessage;
+    @FXML
+    private Button btnLogin;
+    @FXML
+    private PasswordField passwordtxt;
     private Database database;
     private Role role;
     private User user;

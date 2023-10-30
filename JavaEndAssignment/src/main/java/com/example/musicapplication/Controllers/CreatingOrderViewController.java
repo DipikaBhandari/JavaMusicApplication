@@ -7,6 +7,7 @@ import com.example.musicapplication.Models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
@@ -20,17 +21,20 @@ import java.util.ArrayList;
 import static java.lang.Integer.parseInt;
 
 public class CreatingOrderViewController {
-    public Button DeleteProductButton;
-    public Button AddProductButton;
-    public Button CreateOrderButton;
-    public TextField txtPhoneNumber;
-    public TextField txtFirstName;
-    public TextField txtLastName;
-    public TextField txtEmailAddress;
-    public TableView <Product> OrdersTable;
+    @FXML
+    private Label messageLabel;
+    @FXML
+    private TextField txtPhoneNumber;
+    @FXML
+    private TextField txtFirstName;
+    @FXML
+    private TextField txtLastName;
+    @FXML
+    private TextField txtEmailAddress;
+    @FXML
+    private TableView <Product> OrdersTable;
     private Database database;
 
-  //  private final List<Product> selectedItems = new ArrayList<>();
     private ObservableList<Product> selectedItems = FXCollections.observableArrayList();
 
     private User user;
@@ -71,9 +75,11 @@ public class CreatingOrderViewController {
             Product selectedProduct = OrdersTable.getSelectionModel().getSelectedItem();
             if (selectedProduct != null) {
                 selectedItems.remove(selectedProduct);
-
+                database.increaseStockProducts(selectedProduct.getProductName(), selectedProduct.getQuantity());
+                messageLabel.setText("");
             }
         } catch (Exception e){
+            messageLabel.setText("Error: Deleting Product");
          e.printStackTrace();
         }
     }
@@ -82,15 +88,20 @@ public class CreatingOrderViewController {
         String customerFirstName = txtFirstName.getText();
         String customerLastName = txtLastName.getText();
         String email = txtEmailAddress.getText();
-        int phoneNumber = parseInt(txtPhoneNumber.getText());
+        String phoneNumber = txtPhoneNumber.getText();
 
+        if(customerFirstName.isEmpty() || customerLastName.isEmpty() || email.isEmpty() || phoneNumber.isEmpty()){
+            messageLabel.setText("Error: Please fill in all the fields.");
+        }
+        if(OrdersTable.getItems().isEmpty()){
+            messageLabel.setText("Please click on 'Add Product' and choose item to create your order.");
+        }
         try{
-            User customer = new User(customerFirstName, customerLastName, email, phoneNumber);
+            int number = Integer.parseInt(phoneNumber);
+            User customer = new User(customerFirstName, customerLastName, email, number);
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String currentDateTime = now.format(formatter);
-
-            reduceStockProducts();
 
             Order order = new Order(currentDateTime, customer, new ArrayList<>(selectedItems));
             database.addOrderToFile(order);
@@ -101,23 +112,7 @@ public class CreatingOrderViewController {
         }
     }
 
-    private Product findItemByName(String productName) {
-        for(Product product:database.getProducts()){
-            if(product.getProductName().equals(productName)){
-                return product;
-            }
-        } return null;
 
-    }
-
-    private void reduceStockProducts() {
-        for (Product product : selectedItems) {
-            Product selectedProduct = findItemByName(product.getProductName());
-            if (selectedProduct != null) {
-                selectedProduct.stockManagement(product.getQuantity());
-            }
-        }
-    }
 
     public void clearTextbox() {
         txtFirstName.clear();

@@ -53,16 +53,18 @@
                     <Font name="Calibri" size="18.0" />
                 </font>
             </Label>
-            <PasswordField fx:id="passwordtxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="129.0" style="-fx-background-color: ffffff; -fx-border-color: #303234;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                <GridPane.margin>
-                    <Insets bottom="20.0" left="1.0" />
-                </GridPane.margin>
-            </PasswordField>
             <TextField fx:id="usernametxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="129.0" style="-fx-background-color: #ffffff; -fx-border-color: #303234;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <GridPane.margin>
                     <Insets bottom="20.0" left="1.0" />
                 </GridPane.margin>
             </TextField>
+
+            <PasswordField fx:id="passwordtxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="129.0" style="-fx-background-color: ffffff; -fx-border-color: #303234;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets bottom="20.0" left="1.0" />
+                </GridPane.margin>
+            </PasswordField>
+
             <Label fx:id="lblErrorMessage" prefHeight="18.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <GridPane.margin>
                     <Insets left="8.0" top="38.0" />

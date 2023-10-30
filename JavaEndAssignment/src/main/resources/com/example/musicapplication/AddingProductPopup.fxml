@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.musicapplication.Controllers.AddingProductPopupController">
     <TableView fx:id="SelectProductTableView" layoutX="19.0" layoutY="71.0" prefHeight="460.0" prefWidth="750.0">
         <columns>
             <TableColumn prefWidth="75.0" text="Stock">
                 <cellValueFactory>
-                    <PropertyValueFactory property="stock"/>
+                    <PropertyValueFactory property="stock" />
                 </cellValueFactory>
             </TableColumn>
 
-            <TableColumn prefWidth="170.33333587646484" text="Name" >
+            <TableColumn prefWidth="170.33333587646484" text="Name">
                 <cellValueFactory>
-                    <PropertyValueFactory property="productName"/>
+                    <PropertyValueFactory property="productName" />
                 </cellValueFactory>
             </TableColumn>
 
-            <TableColumn minWidth="0.0" prefWidth="129.33334350585938" text="Category" >
+            <TableColumn minWidth="0.0" prefWidth="129.33334350585938" text="Category">
                 <cellValueFactory>
-                    <PropertyValueFactory property="productCategory"/>
+                    <PropertyValueFactory property="productCategory" />
                 </cellValueFactory>
             </TableColumn>
 
-            <TableColumn prefWidth="113.0" text="Price" >
+            <TableColumn prefWidth="113.0" text="Price">
                 <cellValueFactory>
-                    <PropertyValueFactory property="price"/>
+                    <PropertyValueFactory property="price" />
                 </cellValueFactory>
             </TableColumn>
 
-            <TableColumn prefWidth="356.9999694824219" text="Description" >
+            <TableColumn prefWidth="356.9999694824219" text="Description">
                 <cellValueFactory>
-                    <PropertyValueFactory property="productDescription"/>
+                    <PropertyValueFactory property="productDescription" />
                 </cellValueFactory>
             </TableColumn>
         </columns>
@@ -52,4 +52,9 @@
         <font>
             <Font name="Calibri" size="13.0" />
         </font></Button>
+   <Label fx:id="errorMessage" layoutX="40.0" layoutY="650.0" textFill="RED">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Label>
 </AnchorPane>

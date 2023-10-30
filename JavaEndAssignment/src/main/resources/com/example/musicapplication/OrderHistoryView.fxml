@@ -1,32 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.musicapplication.Controllers.OrderHistoryViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.musicapplication.Controllers.OrderHistoryViewController">
     <TableView fx:id="orderHistoryTable" layoutX="-133.0" layoutY="21.0" maxWidth="732.0" minHeight="200.0" prefHeight="214.0" prefWidth="732.0" translateX="170.0" translateY="60.0">
         <columns>
-            <TableColumn prefWidth="180.0" text="Date/Time" />
-            <TableColumn prefWidth="380.5" text="Name" />
-            <TableColumn prefWidth="170.0" text="Total Price" />
+            <TableColumn fx:id="dateColumn" prefWidth="180.0" text="Date/Time">
+                <cellValueFactory>
+                    <PropertyValueFactory property="orderDate" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="nameColumn" prefWidth="380.5" text="Name" />
+            <TableColumn fx:id="priceColumn" prefWidth="170.0" text="Total Price" />
         </columns>
     </TableView>
     <TableView fx:id="orderedProductsTable" layoutX="37.0" layoutY="352.0" maxWidth="732.0" minHeight="200.0" prefHeight="229.0" prefWidth="732.0">
         <columns>
-            <TableColumn prefWidth="95.0" text="Quantity" />
-            <TableColumn prefWidth="365.5" text="Name" />
-            <TableColumn prefWidth="140.0" text="Category" />
-            <TableColumn prefWidth="110.0" text="Price" />
+            <TableColumn prefWidth="95.0" text="Quantity">
+                <cellValueFactory>
+                    <PropertyValueFactory property="quantity" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="365.5" text="Name">
+                <cellValueFactory>
+                    <PropertyValueFactory property="productName" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="140.0" text="Category">
+            <cellValueFactory>
+                <PropertyValueFactory property="productCategory" />
+            </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="110.0" text="Price">
+            <cellValueFactory>
+                <PropertyValueFactory property="finalPrice" />
+            </cellValueFactory>
+            </TableColumn>
         </columns>
     </TableView>
     <Label layoutX="-135.0" layoutY="214.0" text="Order History" translateX="170.0" translateY="-180.0">
         <font>
-            <Font name="Calibri Bold" size="30.0" />
+            <Font name="Arial Bold" size="30.0" />
         </font></Label>
     <Label layoutX="35.0" layoutY="310.0" text="Ordered Products">
         <font>
-            <Font name="Calibri Bold" size="25.0" />
+            <Font name="Arial Bold" size="25.0" />
         </font>
     </Label>
+   <Label fx:id="messageLabel" layoutX="45.0" layoutY="600.0">
+    <font>
+        <Font name="System Bold" size="14.0" />
+    </font>
+   </Label>
+
+
 </AnchorPane>

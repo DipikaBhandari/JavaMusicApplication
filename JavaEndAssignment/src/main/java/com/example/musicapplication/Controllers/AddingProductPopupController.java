@@ -6,18 +6,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class AddingProductPopupController {
-    public Button AddToOrderButton;
-    public TextField quantity;
+    @FXML
+    private Label errorMessage;
+    @FXML
+    private TextField quantity;
     @FXML
     private TableView<Product> SelectProductTableView;
-    public Button CancelButton;
+
+    @FXML
+    private Button CancelButton;
+
     private Database database;
     private ObservableList<Product> products;
 
@@ -40,7 +42,6 @@ public class AddingProductPopupController {
     public void initialize(){
         try{
             SelectProductTableView .getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -55,19 +56,25 @@ public class AddingProductPopupController {
         }
     }
 
-
     public void AddButton(ActionEvent actionEvent) {
         try{
             int numberOfItem = Integer.parseInt(quantity.getText());
             Product selectProduct = SelectProductTableView.getSelectionModel().getSelectedItem();
-
+            if(selectProduct==null){
+                errorMessage.setText("Please select an item to add to your order.");
+                return;
+            }
             if (selectProduct.getStock() >= numberOfItem){
                 Product newproduct = new Product(numberOfItem, selectProduct.getProductName(), selectProduct.getProductCategory(), selectProduct.getPrice());
+                database.reduceStockProducts(selectProduct.getProductName(), numberOfItem);
                 creatingOrderViewController.getOrderedProduct(newproduct);
+                errorMessage.setText("");
                 quantity.clear();
             }
-
-        } catch (Exception ex){
+            else{errorMessage.setText("Error: Not Enough Stock");}
+        }
+        catch (Exception ex){
+            errorMessage.setText("Error: Loading Products");
             ex.printStackTrace();
         }
     }

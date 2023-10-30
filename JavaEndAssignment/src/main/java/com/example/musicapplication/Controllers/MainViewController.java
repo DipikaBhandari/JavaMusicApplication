@@ -5,6 +5,7 @@ import com.example.musicapplication.MusicApplication;
 import com.example.musicapplication.Models.Role;
 import com.example.musicapplication.Models.User;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -14,13 +15,16 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 public class MainViewController {
-    public Button dashboardBtn;
-    public Button createOrderBtn;
-    public Button productInventoryBtn;
-    public Button orderHistoryBtn;
-    public VBox vbox;
-    public Label welcomelbl;
-    public Label rolelbl;
+    @FXML
+    private Button dashboardBtn;
+    @FXML
+    private Button createOrderBtn;
+    @FXML
+    private Button productInventoryBtn;
+    @FXML
+    private Button orderHistoryBtn;
+    @FXML
+    private VBox vbox;
     private Database database;
     private User user;
     public void useDatabase(Database database) {

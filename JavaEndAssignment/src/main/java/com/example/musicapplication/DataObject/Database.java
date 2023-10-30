@@ -20,6 +20,7 @@ public class Database {
         users.add(new User("Wim", "Wim@2222", Role.Manager));
 
         loadDataFromFile();
+
     }
 
     public User LoginAuthorization(String userName, String password) throws ResultNotFoundException {
@@ -36,6 +37,16 @@ public class Database {
         return products;
     }
 
+    public void sampleData(){
+        User customer= new User("Dipika", "Bhandari", "dipika1@gmail.com", 2345345);
+
+        products.add(new Product(10, "Flute", "Flute", 300.0, "It's a nice flute ehe." ));
+        products.add(new Product(10, "Trumpet", "Trumpet", 600.0, "It's a nice trumpet ehe." ));
+        List<Product> orderedProduct = new ArrayList<>();
+        orders.add(new Order("01:00:00 30-10-2023", customer, (ArrayList<Product>) orderedProduct));
+
+    }
+
     public void saveDataToFile(){
         dataSerialization = new DataSerialization(users, products, orders);
         try{
@@ -50,10 +61,11 @@ public class Database {
         File file = new File("Music.dat");
         if (!file.exists())
         {
+            sampleData();
             saveDataToFile();
         }
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            dataSerialization =(DataSerialization)ois.readObject();
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
+            dataSerialization =(DataSerialization)objectInputStream.readObject();
             users.clear();
             products.clear();
             orders.clear();
@@ -69,7 +81,6 @@ public class Database {
 
 
     public void addProductToFile(Product product) {
-       // products.add(new Product(5, "guitar", "g", 9.00, "yryjgyjgj"));
         products.add(product);
         saveDataToFile();
     }
@@ -84,6 +95,26 @@ public class Database {
     public void addOrderToFile(Order order) {
         orders.add(order);
         saveDataToFile();
+    }
+    public void reduceStockProducts(String productname, int quantity) {
+        Product product = findItemByName(productname);
+        int stock = product.getStock();
+        product.setStock(stock-quantity);
+
+    }
+
+    private Product findItemByName(String productName) {
+        for(Product product: products){
+            if(product.getProductName().equals(productName)){
+                return product;
+            }
+        } return null;
+
+    }
+    public void increaseStockProducts(String productname, int quantity){
+        Product product = findItemByName(productname);
+        int stock = product.getStock();
+        product.setStock(stock+quantity);
     }
 }
 

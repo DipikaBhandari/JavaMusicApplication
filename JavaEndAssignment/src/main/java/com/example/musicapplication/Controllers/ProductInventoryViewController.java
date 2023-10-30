@@ -5,19 +5,24 @@ import com.example.musicapplication.Models.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class ProductInventoryViewController {
-    public Button AddProductbtn;
-    public Button DeleteProductbtn;
-    public Button EditProductbtn;
-    public TableView <Product> ProductInventoryTableView;
-    public TextField stocktxt;
-    public TextField productnametxt;
-    public TextField productcategorytxt;
-    public TextField pricetxt;
-    public TextField descriptiontxt;
-    public Label MessageLabel;
+    @FXML
+    private TableView <Product> ProductInventoryTableView;
+    @FXML
+    private TextField stocktxt;
+    @FXML
+    private TextField productnametxt;
+    @FXML
+    private TextField productcategorytxt;
+    @FXML
+    private TextField pricetxt;
+    @FXML
+    private TextField descriptiontxt;
+    @FXML
+    private Label MessageLabel;
     private Product product;
     private ObservableList<Product> products;
 
@@ -30,9 +35,8 @@ public class ProductInventoryViewController {
     public void initialize() {
         try {
             ProductInventoryTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
         } catch (Exception e) {
-            // MessageLabel.setText("Initialization Failed");
+            MessageLabel.setText("Initialization Failed");
             e.printStackTrace();
         }
     }
@@ -42,7 +46,7 @@ public class ProductInventoryViewController {
             products = FXCollections.observableArrayList(database.getProducts());
             ProductInventoryTableView.setItems(products);
         } catch (Exception ex) {
-            MessageLabel.setText("Error loading products");
+            MessageLabel.setText("Error: Loading Products");
             ex.printStackTrace();
         }
     }
@@ -59,9 +63,9 @@ public class ProductInventoryViewController {
             database.addProductToFile(product);
             products.add(product);
             emptyTextFields();
-            MessageLabel.setText(product.getProductName() + " added successfully.");
+            MessageLabel.setText(product.getProductName() + " Added Successfully.");
         } catch (Exception e) {
-            MessageLabel.setText("Error occurred");
+            MessageLabel.setText("Error: Adding Product");
             e.printStackTrace();
         }
     }
@@ -71,11 +75,12 @@ public class ProductInventoryViewController {
             ObservableList<Product> selectedProducts = ProductInventoryTableView.getSelectionModel().getSelectedItems();
             for (Product product : selectedProducts) {
                 database.removeProductFromFile(product);
+                PromptText();
             }
             products.removeAll(selectedProducts);
-            MessageLabel.setText(" Product removed successfully.");
+            MessageLabel.setText("Product Removed Successfully.");
         } catch (Exception e) {
-            MessageLabel.setText("Error occurred");
+            MessageLabel.setText("Error: Removing Product");
             e.printStackTrace();
         }
     }
@@ -89,7 +94,7 @@ public class ProductInventoryViewController {
                   PromptText();
             }
         } catch (Exception ex) {
-            MessageLabel.setText("No Product Selected");
+            MessageLabel.setText("Error: No Product Selected");
         }
     }
 
@@ -105,7 +110,7 @@ public class ProductInventoryViewController {
                 product = selectedProduct;
             }
         } catch (Exception e) {
-            MessageLabel.setText("Error setting product details.");
+            MessageLabel.setText("Error: Setting Product Details.");
         }
     }
     public void emptyTextFields() {
@@ -116,7 +121,7 @@ public class ProductInventoryViewController {
             pricetxt.clear();
             descriptiontxt.clear();
         } catch (Exception e) {
-            MessageLabel.setText("Error clearing fields.");
+            MessageLabel.setText("Error: Clearing Fields");
         }
     }
 
@@ -155,7 +160,7 @@ public class ProductInventoryViewController {
 
                  emptyTextFields();
                 product = null;
-                MessageLabel.setText("Product Successfully Edited");
+                MessageLabel.setText("Product Edited Successfully");
             } catch (NumberFormatException ex) {
             throw new RuntimeException(ex);
         }

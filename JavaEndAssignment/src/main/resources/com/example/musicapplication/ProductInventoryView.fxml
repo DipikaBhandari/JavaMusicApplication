@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.musicapplication.Controllers.ProductInventoryViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.musicapplication.Controllers.ProductInventoryViewController">
 
     <children>
       <TableView fx:id="ProductInventoryTableView" layoutX="19.0" layoutY="71.0" prefHeight="460.0" prefWidth="846.0">
@@ -46,17 +46,17 @@
             </TableColumn>
         </columns>
       </TableView>
-       <Button fx:id="AddProductbtn" layoutX="198.0" layoutY="637.0" mnemonicParsing="false" onAction="#AddProductButton" prefHeight="26.0" prefWidth="111.0" text="Add Product">
+       <Button fx:id="AddProductbtn" layoutX="198.0" layoutY="600.0" mnemonicParsing="false" onAction="#AddProductButton" prefHeight="26.0" prefWidth="111.0" text="Add Product">
            <font>
                <Font name="Calibri" size="13.0" />
            </font>
        </Button>
-       <Button fx:id="DeleteProductbtn" layoutX="348.0" layoutY="637.0" mnemonicParsing="false" onAction="#DeleteButton" prefHeight="25.0" prefWidth="111.0" text="Delete Product">
+       <Button fx:id="DeleteProductbtn" layoutX="348.0" layoutY="600.0" mnemonicParsing="false" onAction="#DeleteButton" prefHeight="25.0" prefWidth="111.0" text="Delete Product">
            <font>
                <Font name="Calibri" size="13.0" />
            </font>
        </Button>
-       <Button fx:id="EditProductbtn" layoutX="494.0" layoutY="637.0" mnemonicParsing="false" onAction="#EditButton" prefHeight="25.0" prefWidth="111.0" text="Edit Product">
+       <Button fx:id="EditProductbtn" layoutX="494.0" layoutY="600.0" mnemonicParsing="false" onAction="#EditButton" prefHeight="25.0" prefWidth="111.0" text="Edit Product">
            <font>
                <Font name="Calibri" size="13.0" />
            </font>
@@ -71,6 +71,11 @@
        <TextField fx:id="productcategorytxt" layoutX="351.0" layoutY="555.0" promptText="Category" />
        <TextField fx:id="pricetxt" layoutX="523.0" layoutY="555.0" promptText="Price" />
        <TextField fx:id="descriptiontxt" layoutX="697.0" layoutY="555.0" promptText="Description" />
-       <Label fx:id="MessageLabel" layoutX="17.0" layoutY="612.0" prefHeight="17.0" prefWidth="292.0" />
+       <Label fx:id="MessageLabel" layoutX="17.0" layoutY="600.0" prefHeight="17.0" prefWidth="292.0" >
+        <font>
+            <Font name="System Bold" size="14.0" />
+        </font>
+       </Label>
+
    </children>
 </AnchorPane>

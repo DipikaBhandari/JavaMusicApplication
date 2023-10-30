@@ -11,7 +11,7 @@ public class MusicApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-      Database database= new Database();
+        Database database = new Database();
 
         FXMLLoader loginLoader = new FXMLLoader(MusicApplication.class.getResource("login.fxml"));
         Scene scene = new Scene(loginLoader.load(), 401, 256);
